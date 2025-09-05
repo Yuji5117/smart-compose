@@ -2,7 +2,7 @@ import { JobInputPanel } from '@/feature/job-posting/components/input/JobInputPa
 
 export default function JobCreatorPage() {
   return (
-    <main className="container mx-auto px-4">
+    <main className="container mx-auto px-4 pt-6">
       <div className="grid">
         <JobInputPanel />
       </div>
