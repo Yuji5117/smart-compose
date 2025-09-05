@@ -6,5 +6,5 @@ import Page from '../page';
 test('Pageコンポーネントが正しくレンダリングされる', () => {
   render(<Page />);
 
-  expect(screen.getByText('Smart Composer')).toBeInTheDocument();
+  expect(screen.getByText('Smart Compose')).toBeInTheDocument();
 });
