@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import './globals.css';
+
 import { Header } from '@/components/layouts/Header';
+
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Smart Compose - 求人作成ツール',
