@@ -1,5 +1,5 @@
 import Image from 'next/image';
 
 export default function Home() {
-  return <div className="">Smart Composer</div>;
+  return <div className="">Smart Compose</div>;
 }

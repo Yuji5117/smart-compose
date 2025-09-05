@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import "./globals.css";
-
+import type { Metadata } from 'next';
+import './globals.css';
+import { Header } from '@/components/layouts/Header';
 
 export const metadata: Metadata = {
   title: 'Smart Compose - 求人作成ツール',
@@ -14,9 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body
-        className="antialiased"
-      >
+      <body>
+        <Header />
         {children}
       </body>
     </html>
