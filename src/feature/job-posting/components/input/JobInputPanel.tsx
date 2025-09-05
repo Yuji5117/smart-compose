@@ -1,6 +1,20 @@
 import React from 'react';
 import { Input } from './Input';
 import { InputField } from './InputField';
+import { Select } from './Select';
+
+const TONE_OPTIONS = [
+  { value: 'polite', label: '丁寧' },
+  { value: 'friendly', label: 'フレンドリー' },
+  { value: 'casual', label: 'カジュアル' },
+  { value: 'formal', label: 'フォーマル' },
+  { value: 'professional', label: 'プロフェッショナル' },
+  { value: 'approachable', label: '親しみやすい' },
+  { value: 'passionate', label: '情熱的' },
+  { value: 'trustworthy', label: '信頼できる' },
+  { value: 'innovative', label: '革新的' },
+  { value: 'warm', label: '温かい' },
+];
 
 export const JobInputPanel = () => {
   return (
@@ -18,6 +32,9 @@ export const JobInputPanel = () => {
         </InputField>
         <InputField label="勤務地">
           <Input placeholder="例) 東京、大阪" />
+        </InputField>
+        <InputField label="文章のトーン">
+          <Select options={TONE_OPTIONS} placeholder="選択してください" />
         </InputField>
       </form>
     </div>
