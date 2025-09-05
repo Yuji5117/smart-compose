@@ -1,5 +1,11 @@
-import Image from 'next/image';
+import { JobInputPanel } from '@/feature/job-posting/components/input/JobInputPanel';
 
-export default function Home() {
-  return <div className="">Smart Compose</div>;
+export default function JobCreatorPage() {
+  return (
+    <main className="container mx-auto px-4 pt-6">
+      <div className="grid">
+        <JobInputPanel />
+      </div>
+    </main>
+  );
 }
