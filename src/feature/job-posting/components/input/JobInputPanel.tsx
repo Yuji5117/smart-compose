@@ -37,6 +37,9 @@ export const JobInputPanel = () => {
         <InputField label="文章のトーン">
           <Select options={TONE_OPTIONS} placeholder="選択してください" />
         </InputField>
+        <button className="bg-primary hover:bg-primary/80 cursor-pointer rounded-md px-2 py-2 text-sm text-white mt-4">
+          文章を生成する
+        </button>
       </form>
     </div>
   );
