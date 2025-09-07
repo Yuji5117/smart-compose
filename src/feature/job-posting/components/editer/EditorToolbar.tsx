@@ -1,6 +1,7 @@
 'use client';
 
 import { Copy, PencilLine } from 'lucide-react';
+
 import { ToolbarButton } from './ToolbarButton';
 
 export const EditorToolbar = () => {
