@@ -19,7 +19,7 @@ const TONE_OPTIONS = [
 
 export const JobInputPanel = () => {
   return (
-    <div className="flex w-1/4 flex-col gap-y-6 rounded-lg border border-[#e5e7eb] p-4">
+    <div className="flex w-2/5 flex-col gap-y-6 rounded-lg border border-[#e5e7eb] p-4">
       <h2 className="text-xl">求人の原稿を作成しよう</h2>
       <form action="" className="flex flex-col gap-y-4">
         <InputField label="求人種別" required>
