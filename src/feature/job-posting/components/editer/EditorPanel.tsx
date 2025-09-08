@@ -1,10 +1,25 @@
+import { useEffect, useState } from 'react';
 import { EditorToolbar } from './EditorToolbar';
 
-export const EditorPanel = () => {
+type EditorPanelProps = {
+  output: string;
+};
+
+export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
+  const [text, setText] = useState<string>('');
+
+  useEffect(() => {
+    if (output) setText(output);
+  }, [output]);
+
   return (
-    <div className="flex w-full gap-y-4 flex-col rounded-lg border border-[#e5e7eb] p-4">
+    <div className="flex w-full flex-col gap-y-4 rounded-lg border border-[#e5e7eb] p-4">
       <EditorToolbar />
-      <textarea className="w-full rounded-md border border-[#e5e7eb] p-2" rows={20} />
+      <textarea
+        value={text}
+        className="w-full rounded-md border border-[#e5e7eb] p-2"
+        rows={20}
+      />
     </div>
   );
 };
