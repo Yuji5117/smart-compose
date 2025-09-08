@@ -6,16 +6,9 @@ import { Input } from './Input';
 import { InputField } from './InputField';
 import { Select } from './Select';
 import { generateJobPostiongAction } from '@/feature/job-posting/actions/generateJobPostiong';
+import { JobFormInput } from '../../schemas/schemas';
 
-type FormState = {
-  jobType: string;
-  keywords: string;
-  salary: string;
-  location: string;
-  tone: string;
-};
-
-const INITIAL: FormState = {
+const INITIAL: JobFormInput = {
   jobType: '',
   keywords: '',
   salary: '',
@@ -49,28 +42,28 @@ export const JobInputPanel = () => {
         <InputField label="求人種別">
           <Input
             name="jobType"
-            defaultValue={state.jobType}
+            defaultValue={state.values?.jobType}
             placeholder="例) 人材"
           />
         </InputField>
         <InputField label="キーワード">
           <Input
             name="keywords"
-            defaultValue={state.keywords}
+            defaultValue={state.values?.keywords}
             placeholder="例) 未経験歓迎"
           />
         </InputField>
         <InputField label="給与">
           <Input
             name="salary"
-            defaultValue={state.salary}
+            defaultValue={state.values?.salary}
             placeholder="例) 月給30万円〜"
           />
         </InputField>
         <InputField label="勤務地">
           <Input
             name="location"
-            defaultValue={state.location}
+            defaultValue={state.values?.location}
             placeholder="例) 東京、大阪"
           />
         </InputField>
@@ -78,7 +71,7 @@ export const JobInputPanel = () => {
           <Select
             options={TONE_OPTIONS}
             name="tone"
-            defaultValue={state.tone}
+            defaultValue={state.values?.tone}
             placeholder="選択してください"
           />
         </InputField>
