@@ -16,7 +16,7 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
     <div className="flex w-full flex-col gap-y-4 rounded-lg border border-[#e5e7eb] p-4">
       <EditorToolbar />
       <textarea
-        value={text}
+        defaultValue={text}
         className="w-full rounded-md border border-[#e5e7eb] p-2"
         rows={20}
       />
