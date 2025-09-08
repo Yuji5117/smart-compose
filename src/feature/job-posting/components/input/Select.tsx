@@ -16,7 +16,6 @@ export const Select: React.FC<SelectType> = ({
   placeholder,
   defaultValue,
 }) => {
-  console.log('default', defaultValue);
   return (
     <select
       name={name}
