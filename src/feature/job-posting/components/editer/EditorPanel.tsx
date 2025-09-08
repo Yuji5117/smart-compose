@@ -14,11 +14,12 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
 
   return (
     <div className="flex w-full flex-col gap-y-4 rounded-lg border border-[#e5e7eb] p-4">
-      <EditorToolbar output={output} />
+      <EditorToolbar output={text} />
       <textarea
-        defaultValue={text}
+        value={text}
         className="w-full rounded-md border border-[#e5e7eb] p-2"
         rows={20}
+        onChange={(e) => setText(e.target.value)}
       />
     </div>
   );
