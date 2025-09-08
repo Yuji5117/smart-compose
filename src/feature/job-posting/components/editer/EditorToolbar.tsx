@@ -7,9 +7,13 @@ import { useState } from 'react';
 
 type EditorToolbarProps = {
   output: string;
+  handleRewriteClick: () => void;
 };
 
-export const EditorToolbar: React.FC<EditorToolbarProps> = ({ output }) => {
+export const EditorToolbar: React.FC<EditorToolbarProps> = ({
+  output,
+  handleRewriteClick,
+}) => {
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = async () => {
@@ -22,7 +26,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({ output }) => {
   return (
     <div className="flex flex-row gap-x-4 rounded-lg border border-[#e5e7eb] bg-gray-50 p-4">
       <ToolbarButton
-        onClick={() => console.log('書き換え')}
+        onClick={handleRewriteClick}
         icon={<PencilLine size={16} />}
       >
         書き換え
