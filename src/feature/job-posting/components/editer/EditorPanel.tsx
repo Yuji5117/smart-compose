@@ -14,7 +14,7 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
 
   return (
     <div className="flex w-full flex-col gap-y-4 rounded-lg border border-[#e5e7eb] p-4">
-      <EditorToolbar />
+      <EditorToolbar output={output} />
       <textarea
         defaultValue={text}
         className="w-full rounded-md border border-[#e5e7eb] p-2"

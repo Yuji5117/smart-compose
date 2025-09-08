@@ -4,7 +4,15 @@ import { Copy, PencilLine } from 'lucide-react';
 
 import { ToolbarButton } from './ToolbarButton';
 
-export const EditorToolbar = () => {
+type EditorToolbarProps = {
+  output: string;
+};
+
+export const EditorToolbar: React.FC<EditorToolbarProps> = ({ output }) => {
+  const handleCopy = async () => {
+    if (!output) return;
+    await navigator.clipboard.writeText(output);
+  };
   return (
     <div className="flex flex-row gap-x-4 rounded-lg border border-[#e5e7eb] bg-gray-50 p-4">
       <ToolbarButton
@@ -13,10 +21,7 @@ export const EditorToolbar = () => {
       >
         書き換え
       </ToolbarButton>
-      <ToolbarButton
-        onClick={() => console.log('コピー')}
-        icon={<Copy size={16} />}
-      >
+      <ToolbarButton onClick={handleCopy} icon={<Copy size={16} />}>
         コピー
       </ToolbarButton>
     </div>
