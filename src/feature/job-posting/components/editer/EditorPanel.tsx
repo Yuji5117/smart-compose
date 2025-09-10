@@ -18,8 +18,6 @@ function textToHTML(txt: string) {
 }
 
 export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [text, setText] = useState<string>('');
   const editor = useEditor({
     extensions: [StarterKit],
     content: textToHTML(output ?? ''),
