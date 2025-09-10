@@ -25,7 +25,7 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
     content: textToHTML(output ?? ''),
     immediatelyRender: false,
     editorProps: {
-      attributes: { class: 'w-full rounded-md border border-[#e5e7eb] p-2' },
+      attributes: { class: 'w-full rounded-md border border-[#e5e7eb] p-4' },
     },
   });
 
@@ -38,22 +38,25 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
     }
   }, [output, editor]);
 
-  const getSelection = () => {
-    const textarea = textareaRef.current;
-    const start = textarea?.selectionStart;
-    const end = textarea?.selectionEnd;
-    const selected = text.slice(start, end);
-    return { start, end, selected };
-  };
-
   const handleRewriteClick = () => {
-    const { selected } = getSelection();
-    if (!selected) return;
+    if (!editor) return;
+    const { from, to } = editor.state.selection;
+    if (from === to) return;
 
-    const { start, end } = getSelection();
-    setText(
-      (prev) => prev.slice(0, start) + '入れ替えました。' + prev.slice(end)
-    );
+    try {
+      const rewritten = '入れ替えました';
+      editor
+        .chain()
+        .focus()
+        .insertContentAt({ from, to }, rewritten)
+        .setTextSelection({
+          from: from + rewritten.length,
+          to: from + rewritten.length,
+        })
+        .run();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (!editor) return null;
