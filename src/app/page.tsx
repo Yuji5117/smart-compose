@@ -20,8 +20,8 @@ export default function JobCreatorPage() {
     INITIAL
   );
   return (
-    <main className="container mx-auto px-4 pt-6">
-      <div className="flex flex-row gap-x-6">
+    <main className="container mx-auto px-4 py-6">
+      <div className="flex flex-row items-start gap-x-6">
         <JobInputPanel action={formAction} values={state.values} />
         <EditorPanel output={state.output} />
       </div>
