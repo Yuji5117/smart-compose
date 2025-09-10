@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { EditorToolbar } from './EditorToolbar';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { BubbleMenu } from '@tiptap/react/menus';
 
 type EditorPanelProps = {
   output: string;
@@ -66,6 +67,19 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
         handleRewriteClick={handleRewriteClick}
       />
       <EditorContent editor={editor} />
+      <BubbleMenu editor={editor}>
+        <div className="flex items-center gap-1 rounded-lg border border-[#e5e7eb] bg-white p-1 shadow">
+          <button className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100">
+            丁寧
+          </button>
+          <button className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100">
+            他の言い換え
+          </button>
+          <button className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100">
+            カジュアル
+          </button>
+        </div>
+      </BubbleMenu>
     </div>
   );
 };
