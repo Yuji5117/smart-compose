@@ -3,6 +3,7 @@ import { EditorToolbar } from './EditorToolbar';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { BubbleMenu } from '@tiptap/react/menus';
+import { RewriteMode, rewriteSelection } from '../../actions/rewriteSelection';
 
 type EditorPanelProps = {
   output: string;
@@ -37,13 +38,16 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
     }
   }, [output, editor]);
 
-  const handleRewriteClick = () => {
+  const handleRewriteClick = async (mode: RewriteMode) => {
     if (!editor) return;
     const { from, to } = editor.state.selection;
     if (from === to) return;
 
+    const selected = editor.state.doc.textBetween(from, to, '\n');
+
     try {
-      const rewritten = '入れ替えました';
+      const rewritten = await rewriteSelection({ selected, mode });
+
       editor
         .chain()
         .focus()
@@ -64,19 +68,28 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
     <div className="flex w-full flex-col gap-y-4 rounded-lg border border-[#e5e7eb] p-4">
       <EditorToolbar
         output={editor?.getText()}
-        handleRewriteClick={handleRewriteClick}
+        handleRewriteClick={() => handleRewriteClick('paraphrase')}
       />
       <EditorContent editor={editor} />
       <BubbleMenu editor={editor}>
         <div className="flex items-center gap-1 rounded-lg border border-[#e5e7eb] bg-white p-1 shadow">
-          <button className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100">
-            丁寧
+          <button
+            onClick={() => handleRewriteClick('condense')}
+            className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100"
+          >
+            短く
           </button>
-          <button className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100">
+          <button
+            onClick={() => handleRewriteClick('expand')}
+            className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100"
+          >
+            長く
+          </button>
+          <button
+            onClick={() => handleRewriteClick('paraphrase')}
+            className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100"
+          >
             他の言い換え
-          </button>
-          <button className="cursor-pointer rounded px-2 py-1 text-sm hover:bg-gray-100">
-            カジュアル
           </button>
         </div>
       </BubbleMenu>
