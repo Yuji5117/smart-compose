@@ -5,23 +5,28 @@ type Option = {
 
 type SelectType = {
   options: readonly Option[];
+  name: string;
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue: string;
 };
 
 export const Select: React.FC<SelectType> = ({
   options,
+  name,
   placeholder,
   defaultValue,
 }) => {
   return (
     <select
-      defaultValue={defaultValue ?? ''}
+      name={name}
+      defaultValue={defaultValue}
       className="rounded-md border border-[#e5e7eb] bg-gray-50 p-2 text-sm"
     >
-      <option value="" disabled hidden>
-        {placeholder}
-      </option>
+      {placeholder && (
+        <option value="" disabled hidden>
+          {placeholder}
+        </option>
+      )}
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.label}
