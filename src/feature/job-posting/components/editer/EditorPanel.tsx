@@ -25,7 +25,10 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({ output }) => {
     content: textToHTML(output ?? ''),
     immediatelyRender: false,
     editorProps: {
-      attributes: { class: 'w-full rounded-md border border-[#e5e7eb] p-4' },
+      attributes: {
+        class:
+          'w-full rounded-md border border-[#e5e7eb] p-4 h-140 overflow-y-auto',
+      },
     },
   });
 
