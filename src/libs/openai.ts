@@ -1,4 +1,5 @@
-import { env } from './../schemas/env';
 import OpenAI from 'openai';
+
+import { env } from './../schemas/env';
 
 export const openai = new OpenAI({ apiKey: env.OPENAI_API_KEY });

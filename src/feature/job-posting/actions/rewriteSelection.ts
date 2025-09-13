@@ -41,6 +41,7 @@ export const rewriteSelection = async ({ selected, mode }: Params) => {
 
     return res.choices[0]?.message?.content?.trim() ?? selected;
   } catch (error) {
+    console.error(error);
     return 'エラー';
   }
 };

@@ -25,3 +25,4 @@ export const JobFormSchema = z.object({
 });
 
 export type JobFormInput = z.infer<typeof JobFormSchema>;
+export type JobFormRaw = Omit<JobFormInput, 'tone'> & { tone: string };

@@ -1,18 +1,33 @@
 'use server';
 
 import { openai } from '@/libs/openai';
-import { JobFormSchema } from '../schemas/schemas';
+
+import { JobFormInput, JobFormRaw, JobFormSchema } from '../schemas/schemas';
+
+type FieldErrors<T> = Partial<Record<keyof T, string[]>>;
+
+export type ActionState = {
+  values: Partial<JobFormInput> | JobFormRaw;
+  errors?: FieldErrors<JobFormInput>;
+  output?: string;
+  message?: string;
+};
+
+const getString = (formData: FormData, key: string) => {
+  const val = formData.get(key);
+  return typeof val === 'string' ? val : '';
+};
 
 export const generateJobPostiongAction = async (
-  _prev: string | null,
+  _prev: ActionState,
   formData: FormData
-): Promise<any | null> => {
+): Promise<ActionState> => {
   const raw = {
-    jobType: formData.get('jobType') ?? '',
-    keywords: formData.get('keywords') ?? '',
-    salary: formData.get('salary') ?? '',
-    location: formData.get('location') ?? '',
-    tone: formData.get('tone') ?? '',
+    jobType: getString(formData, 'jobType'),
+    keywords: getString(formData, 'keywords'),
+    salary: getString(formData, 'salary'),
+    location: getString(formData, 'location'),
+    tone: getString(formData, 'tone'),
   };
 
   const parsed = JobFormSchema.safeParse(raw);
@@ -20,13 +35,7 @@ export const generateJobPostiongAction = async (
   if (!parsed.success) {
     const flat = parsed.error.flatten();
     return {
-      values: {
-        jobType: raw.jobType,
-        keywords: raw.keywords,
-        salary: raw.salary,
-        location: raw.location,
-        tone: raw.tone,
-      },
+      values: raw,
       errors: flat.fieldErrors,
       message: '入力エラーがあります',
     };

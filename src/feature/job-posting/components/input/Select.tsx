@@ -7,7 +7,7 @@ type SelectType = {
   options: readonly Option[];
   name: string;
   placeholder?: string;
-  defaultValue: string;
+  defaultValue?: string;
 };
 
 export const Select: React.FC<SelectType> = ({

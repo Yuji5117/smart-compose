@@ -1,9 +1,7 @@
-import { abortOnSynchronousPlatformIOAccess } from 'next/dist/server/app-render/dynamic-rendering';
-
 type InputProps = {
   type?: string;
   name: string;
-  defaultValue: string;
+  defaultValue?: string;
   placeholder?: string;
 };
 

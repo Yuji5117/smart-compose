@@ -1,3 +1,5 @@
+import { JobFormInput, JobFormRaw } from '../../schemas/schemas';
+
 import { Input } from './Input';
 import { InputField } from './InputField';
 import { Select } from './Select';
@@ -17,7 +19,7 @@ const TONE_OPTIONS = [
 
 type JobInputPanelProps = {
   action: (formData: FormData) => void;
-  values: any;
+  values: Partial<JobFormInput> | JobFormRaw;
 };
 
 export const JobInputPanel: React.FC<JobInputPanelProps> = ({

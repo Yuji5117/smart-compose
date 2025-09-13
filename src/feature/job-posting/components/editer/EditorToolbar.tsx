@@ -1,9 +1,9 @@
 'use client';
 
 import { Copy, PencilLine } from 'lucide-react';
+import { useState } from 'react';
 
 import { ToolbarButton } from './ToolbarButton';
-import { useState } from 'react';
 
 type EditorToolbarProps = {
   output: string;

@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
-import { EditorToolbar } from './EditorToolbar';
 import { EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
 import { BubbleMenu } from '@tiptap/react/menus';
+import StarterKit from '@tiptap/starter-kit';
+import { useEffect } from 'react';
+
 import { RewriteMode, rewriteSelection } from '../../actions/rewriteSelection';
 
+import { EditorToolbar } from './EditorToolbar';
+
 type EditorPanelProps = {
-  output: string;
+  output: string | undefined;
 };
 
 function textToHTML(txt: string) {
