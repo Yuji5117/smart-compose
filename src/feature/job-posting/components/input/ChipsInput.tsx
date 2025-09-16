@@ -4,11 +4,10 @@ import { Input } from './Input';
 
 type ChipsInputProps = {
   name: string;
-  value?: string;
   placeholder: string;
 };
 
-export const ChipsInput = ({ name, value, placeholder }: ChipsInputProps) => {
+export const ChipsInput = ({ name, placeholder }: ChipsInputProps) => {
   const [chips, setChips] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [isComposing, setIsComposing] = useState<boolean>(false);
