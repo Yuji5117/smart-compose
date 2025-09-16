@@ -24,7 +24,7 @@ export const generateJobPostiongAction = async (
 ): Promise<ActionState> => {
   const raw = {
     jobType: getString(formData, 'jobType'),
-    keywords: getString(formData, 'keywords'),
+    keywords: formData.getAll('keywords[]') as string[],
     salary: getString(formData, 'salary'),
     location: getString(formData, 'location'),
     tone: getString(formData, 'tone'),
@@ -42,6 +42,7 @@ export const generateJobPostiongAction = async (
   }
 
   const data = parsed.data;
+  const keywordsPrompt = data.keywords.join('・');
 
   const res = await openai.chat.completions.create({
     model: 'gpt-4o-mini',
@@ -52,7 +53,7 @@ export const generateJobPostiongAction = async (
       },
       {
         role: 'user',
-        content: `求人種別:${data.jobType}\nキーワード:${data.keywords}\n給与:${data.salary}\n勤務地:${data.location}\nトーン:${data.tone}\nこの条件で求人文を日本語で作成してください。`,
+        content: `求人種別:${data.jobType}\nキーワード:${keywordsPrompt}\n給与:${data.salary}\n勤務地:${data.location}\nトーン:${data.tone}\nこの条件で求人文を日本語で作成してください。`,
       },
     ],
   });
