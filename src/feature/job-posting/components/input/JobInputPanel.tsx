@@ -1,4 +1,5 @@
 import { JobFormInput, JobFormRaw } from '../../schemas/schemas';
+import { ChipsInput } from './ChipsInput';
 
 import { Input } from './Input';
 import { InputField } from './InputField';
@@ -38,9 +39,8 @@ export const JobInputPanel: React.FC<JobInputPanelProps> = ({
           />
         </InputField>
         <InputField label="キーワード">
-          <Input
+          <ChipsInput
             name="keywords"
-            defaultValue={values?.keywords}
             placeholder="例) 未経験歓迎"
           />
         </InputField>
