@@ -18,7 +18,7 @@ export const ToneSchema = z.union([
 
 export const JobFormSchema = z.object({
   jobType: z.string().trim(),
-  keywords: z.string().trim(),
+  keywords: z.array(z.string().trim()),
   salary: z.string().trim(),
   location: z.string().trim(),
   tone: ToneSchema,
