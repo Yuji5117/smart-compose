@@ -1,23 +1,17 @@
-type InputProps = {
-  type?: string;
-  name: string;
-  defaultValue?: string;
-  placeholder?: string;
-};
+import React from 'react';
+
+type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export const Input: React.FC<InputProps> = ({
   type = 'text',
-  name,
-  defaultValue,
-  placeholder,
+  className = '',
+  ...props
 }) => {
   return (
     <input
       type={type}
-      name={name}
-      defaultValue={defaultValue}
-      placeholder={placeholder}
-      className="rounded-md border border-[#e5e7eb] bg-gray-50 p-2 placeholder:text-sm"
+      {...props}
+      className={`rounded-md border border-[#e5e7eb] bg-gray-50 p-2 placeholder:text-sm ${className}`}
     />
   );
 };
