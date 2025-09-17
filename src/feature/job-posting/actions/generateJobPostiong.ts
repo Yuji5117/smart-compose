@@ -3,6 +3,7 @@
 import { openai } from '@/libs/openai';
 
 import { JobFormInput, JobFormRaw, JobFormSchema } from '../schemas/schemas';
+import { getString, getStringArray } from '../utils/formData';
 
 type FieldErrors<T> = Partial<Record<keyof T, string[]>>;
 
@@ -13,20 +14,17 @@ export type ActionState = {
   message?: string;
 };
 
-const getString = (formData: FormData, key: string) => {
-  const val = formData.get(key);
-  return typeof val === 'string' ? val : '';
-};
-
 export const generateJobPostiongAction = async (
   _prev: ActionState,
   formData: FormData
 ): Promise<ActionState> => {
   const raw = {
-    jobType: getString(formData, 'jobType'),
-    keywords: formData.getAll('keywords[]') as string[],
+    role: getString(formData, 'role'),
+    keywords: getStringArray(formData, 'keywords[]'),
     salary: getString(formData, 'salary'),
-    location: getString(formData, 'location'),
+    location: getStringArray(formData, 'location[]'),
+    benefits: getStringArray(formData, 'benefits[]'),
+    sellingPoints: getStringArray(formData, 'sellingPoints[]'),
     tone: getString(formData, 'tone'),
   };
 
@@ -49,11 +47,21 @@ export const generateJobPostiongAction = async (
     messages: [
       {
         role: 'system',
-        content: 'You are a helpful assistant for job postings.',
+        content:
+          'You are a helpful assistant for creating attractive and clear Japanese job postings. Always structure the output in the specified format and do not add extra explanations.',
       },
       {
         role: 'user',
-        content: `求人種別:${data.jobType}\nキーワード:${keywordsPrompt}\n給与:${data.salary}\n勤務地:${data.location}\nトーン:${data.tone}\nこの条件で求人文を日本語で作成してください。`,
+        content: `求人職種: ${data.role}
+          キーワード: ${keywordsPrompt}
+          給与: ${data.salary}
+          勤務地: ${data.location.join('・') || '特になし'}
+          トーン: ${data.tone}
+          福利厚生:
+          ${data.benefits.join('・') || '特になし'}
+          打ち出しポイント:
+          ${data.sellingPoints.join('・') || '自動生成してください'}
+          この条件で求人文を日本語で作成してください。`,
       },
     ],
   });
