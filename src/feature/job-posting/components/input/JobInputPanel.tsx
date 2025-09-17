@@ -21,11 +21,13 @@ const TONE_OPTIONS = [
 type JobInputPanelProps = {
   action: (formData: FormData) => void;
   values: Partial<JobFormInput> | JobFormRaw;
+  isPending: boolean;
 };
 
 export const JobInputPanel: React.FC<JobInputPanelProps> = ({
   action,
   values,
+  isPending,
 }) => {
   return (
     <div className="flex w-2/5 flex-col gap-y-6 rounded-lg border border-[#e5e7eb] p-4">
@@ -65,8 +67,11 @@ export const JobInputPanel: React.FC<JobInputPanelProps> = ({
             placeholder="選択してください"
           />
         </InputField>
-        <button className="bg-primary hover:bg-primary/80 mt-4 cursor-pointer rounded-md px-2 py-2 text-sm text-white">
-          文章を生成する
+        <button
+          className={`mt-4 rounded-md px-2 py-2 text-sm text-white ${isPending ? 'bg-primary/50 hover:bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/80 cursor-pointer'}`}
+          disabled={isPending}
+        >
+          {isPending ? '生成中...' : '文章を生成する'}
         </button>
       </form>
     </div>
