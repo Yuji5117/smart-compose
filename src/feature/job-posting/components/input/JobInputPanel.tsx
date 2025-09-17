@@ -31,17 +31,17 @@ export const JobInputPanel: React.FC<JobInputPanelProps> = ({
     <div className="flex w-2/5 flex-col gap-y-6 rounded-lg border border-[#e5e7eb] p-4">
       <h2 className="text-xl">求人の原稿を作成しよう</h2>
       <form action={action} className="flex flex-col gap-y-4">
-        <InputField label="求人種別">
+        <InputField label="求人種別" required>
           <Input
-            name="jobType"
-            defaultValue={values?.jobType}
+            name="role"
+            defaultValue={values?.role}
             placeholder="例) 人材"
           />
         </InputField>
         <InputField label="キーワード">
           <ChipsInput name="keywords" placeholder="例) 未経験歓迎" />
         </InputField>
-        <InputField label="給与">
+        <InputField label="給与" required>
           <Input
             name="salary"
             defaultValue={values?.salary}
@@ -49,13 +49,15 @@ export const JobInputPanel: React.FC<JobInputPanelProps> = ({
           />
         </InputField>
         <InputField label="勤務地">
-          <Input
-            name="location"
-            defaultValue={values?.location}
-            placeholder="例) 東京、大阪"
-          />
+          <ChipsInput name="location" placeholder="例) 東京" />
         </InputField>
-        <InputField label="文章のトーン">
+        <InputField label="福利厚生">
+          <ChipsInput name="benefits" placeholder="例) 勉強補助" />
+        </InputField>
+        <InputField label="打ち出しポイント">
+          <ChipsInput name="sellingPoints" placeholder="3つまで" />
+        </InputField>
+        <InputField label="文章のトーン" required>
           <Select
             options={TONE_OPTIONS}
             name="tone"
