@@ -42,7 +42,7 @@ export const ChipsInput = ({ name, placeholder }: ChipsInputProps) => {
         onCompositionStart={() => setIsComposing(true)}
         onCompositionEnd={() => setIsComposing(false)}
       />
-      <div className="flex flex-row gap-1.5">
+      <div className="flex flex-row flex-wrap gap-1.5">
         {chips.map((chip) => (
           <div key={chip}>
             <Chip label={chip} onRemove={() => handleOnRermove(chip)} />
