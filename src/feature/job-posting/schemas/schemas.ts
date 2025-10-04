@@ -19,12 +19,12 @@ export const ToneSchema = z.union([
 export const JobFormSchema = z.object({
   role: z.string().trim().min(1, '職種は必須です'),
   keywords: z.array(z.string().trim()).default([]),
-  salary: z.string().trim().min(1, "給与は必須です"),
+  salary: z.string().trim().min(1, '給与は必須です'),
   location: z.array(z.string().trim()).default([]),
-  requirements: z.object({
-    must: z.array(z.string().trim()).default([]),
-    nice: z.array(z.string().trim()).default([]),
-  }),
+  // requirements: z.object({
+  //   must: z.array(z.string().trim()).default([]),
+  //   nice: z.array(z.string().trim()).default([]),
+  // }),
   benefits: z.array(z.string().trim()).default([]),
   sellingPoints: z
     .array(z.string().trim())
